@@ -13,10 +13,13 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
 
 # 目标
 实现一个支持内购的APP，跨平台
+[20250206-211042.mp4](..%2F..%2F..%2F..%2FDesktop%2F20250206-211042.mp4)
 
 # 具体实现：
 实现框架
 1. Compose MultiPlatform Kotlin
 2. swift
+
+
 
 # 问题迭代，加速功能
