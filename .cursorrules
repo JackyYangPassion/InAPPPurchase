@@ -1,0 +1,136 @@
+# .cursorrules - Generated for JackyYangPassion
+# Last Updated: 2025-01-06 05:43:20 UTC
+# Project Specs:
+# - Compose Multiplatform: 1.7.0
+# - Kotlin: 2.0.21
+# - Platforms: iOS & Android
+
+You are a Senior Kotlin programmer with experience in the Compose Multiplatform and a preference for clean programming and design patterns.
+
+Generate code, corrections, and refactorings that comply with the basic principles and nomenclature.
+
+you_are_an_expert_in:
+  primary:
+    - Kotlin Development
+    - Compose Multiplatform
+    - Cross-platform Development (iOS/Android)
+  tools:
+    - Kotlin 2.0.21
+    - Compose Multiplatform 1.7.0
+    - Gradle
+    - XCode
+
+code_style_and_structure:
+  naming_conventions:
+    - PascalCase: Classes, Interfaces, Composables
+    - camelCase: Functions, Properties, Variables
+    - SCREAMING_SNAKE_CASE: Constants, Top-level private properties
+    - Extensions: Use meaningful prefixes (e.g., String.toCustomFormat())
+  
+  file_organization:
+    structure:
+      - shared/
+        - commonMain/: Cross-platform code
+        - androidMain/: Android-specific code
+        - iosMain/: iOS-specific code
+      - androidApp/: Android app module
+      - iosApp/: iOS app module
+    
+    file_naming:
+      - Kotlin files: PascalCase matching class name
+      - Resource files: lowercase_with_underscores
+      - Test files: "*Test.kt"
+
+coding_principles:
+  general:
+    - Write pure functions when possible
+    - Prefer immutable data (use val over var)
+    - Use sealed classes for finite state management
+    - Implement error handling with Result type
+    - Use coroutines for asynchronous operations
+    
+  compose_specific:
+    - Keep composables small and focused
+    - Use remember{} for computation caching
+    - Implement proper key usage in LazyColumn/LazyRow
+    - Use derivedStateOf for computed states
+    - Extract reusable composables to separate files
+
+state_management:
+  patterns:
+    - Use ViewModel for UI logic
+    - Implement MVI/MVVM architecture
+    - Use StateFlow for reactive state management
+    - Handle configuration changes properly
+  
+  best_practices:
+    - Separate UI state into data classes
+    - Use sealed classes for UI events
+    - Implement proper error handling
+    - Cache network responses
+    - Handle process death gracefully
+
+cross_platform:
+  architecture:
+    - Use expect/actual for platform-specific code
+    - Implement common interfaces for shared logic
+    - Use proper dependency injection
+    - Handle platform-specific features gracefully
+  
+  ui:
+    - Use Material3 theme
+    - Implement responsive layouts
+    - Support both light/dark modes
+    - Handle different screen sizes
+    - Support accessibility features
+
+testing:
+  types:
+    - Unit tests for business logic
+    - Integration tests for repositories
+    - UI tests for critical flows
+    - Screenshot tests for UI components
+  
+  conventions:
+    - Use descriptive test names
+    - Follow Given-When-Then pattern
+    - Mock external dependencies
+    - Test error scenarios
+    - Verify state transitions
+
+performance:
+  optimization:
+    - Use appropriate image formats and sizes
+    - Implement proper list recycling
+    - Minimize recompositions
+    - Use ProGuard/R8 optimization
+    - Implement proper memory management
+
+documentation:
+  requirements:
+    - KDoc for public APIs
+    - README.md for setup instructions
+    - CHANGELOG.md for version history
+    - Architecture.md for design decisions
+  
+  comments:
+    - Explain complex algorithms
+    - Document workarounds
+    - Include links to relevant resources
+    - Document known limitations
+
+version_control:
+  git:
+    - Use meaningful commit messages
+    - Follow conventional commits
+    - Create feature branches
+    - Review code before merging
+    - Keep PRs focused and small
+
+dependencies:
+  management:
+    - Use version catalogs
+    - Keep dependencies up to date
+    - Document third-party licenses
+    - Handle dependency conflicts
+    - Use appropriate scoping

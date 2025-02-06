@@ -29,7 +29,6 @@ kotlin {
     }
     
     sourceSets {
-        
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -37,12 +36,16 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
+            implementation(compose.material3)
             implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            // 添加 Kermit 依赖
+            // 使用版本目录引用 Kermit
+            implementation(libs.touchlab.kermit)
         }
     }
 }
@@ -75,6 +78,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.material3.android)
+    implementation(project(":composeApp"))
     debugImplementation(compose.uiTooling)
 }
 

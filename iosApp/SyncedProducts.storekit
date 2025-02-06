@@ -1,0 +1,100 @@
+{
+  "identifier" : "8D31DCB9",
+  "nonRenewingSubscriptions" : [
+    {
+      "displayPrice" : "99.99",
+      "familyShareable" : false,
+      "internalID" : "6741554973",
+      "localizations" : [
+        {
+          "description" : "month billed yearly",
+          "displayName" : "Plus",
+          "locale" : "en_AU"
+        }
+      ],
+      "productID" : "Plus",
+      "referenceName" : "Plus",
+      "type" : "NonRenewingSubscription"
+    },
+    {
+      "displayPrice" : "199.99",
+      "familyShareable" : false,
+      "internalID" : "6741554974",
+      "localizations" : [
+        {
+          "description" : "Ultimate subscription with all features",
+          "displayName" : "Ultimate",
+          "locale" : "en_AU"
+        }
+      ],
+      "productID" : "Ultimate",
+      "referenceName" : "Ultimate",
+      "type" : "NonRenewingSubscription"
+    }
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6740021482",
+    "_developerTeamID" : "586ZP5PBU4",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 760523526.38249505,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

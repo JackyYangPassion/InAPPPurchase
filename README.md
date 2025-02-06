@@ -11,4 +11,12 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
   you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
 
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+# 目标
+实现一个支持内购的APP，跨平台
+
+# 具体实现：
+实现框架
+1. Compose MultiPlatform Kotlin
+2. swift
+
+# 问题迭代，加速功能
