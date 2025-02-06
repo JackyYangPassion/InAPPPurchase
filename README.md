@@ -16,6 +16,10 @@ This is a Kotlin Multiplatform project targeting Android, iOS.
 
 实现效果:
 ![演示视频](doc/20250206-211042.mp4)
+<video width="320" height="240" controls>
+  <source src="doc/20250206-211042.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 
 # 具体实现：
