@@ -1,19 +1,14 @@
 {
-  "identifier" : "8D31DCB9",
-  "nonRenewingSubscriptions" : [],
+  "identifier" : "CEB48F16",
+  "nonRenewingSubscriptions" : [
+
+  ],
   "products" : [
 
   ],
   "settings" : {
-    "_applicationInternalID" : "6740021482",
-    "_askToBuyEnabled" : true,
-    "_billingGracePeriodEnabled" : true,
-    "_billingIssuesEnabled" : true,
-    "_developerTeamID" : "586ZP5PBU4",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 760523526.38249505,
     "_locale" : "en_US",
-    "_renewalBillingIssuesEnabled" : true,
     "_storefront" : "USA",
     "_storeKitErrors" : [
       {
@@ -65,56 +60,60 @@
   },
   "subscriptionGroups" : [
     {
-      "id" : "20240206",
+      "id" : "570711DB",
       "localizations" : [
-        {
-          "description" : "订阅组",
-          "displayName" : "订阅组",
-          "locale" : "en_US"
-        }
+
       ],
-      "name" : "Subscriptions",
+      "name" : "PlanSub",
       "subscriptions" : [
         {
-          "displayPrice" : "99.99",
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
           "familyShareable" : false,
           "groupNumber" : 1,
-          "internalID" : "6741554973",
+          "internalID" : "1A0186D9",
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "月度订阅",
-              "displayName" : "Plus",
+              "description" : "",
+              "displayName" : "",
               "locale" : "en_US"
             }
           ],
           "productID" : "Plus",
-          "recurring" : {
-            "interval" : "month",
-            "intervalCount" : 1
-          },
+          "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Plus",
+          "subscriptionGroupID" : "570711DB",
           "type" : "RecurringSubscription"
         },
         {
-          "displayPrice" : "199.99",
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
           "familyShareable" : false,
-          "groupNumber" : 2,
-          "internalID" : "6741554974",
+          "groupNumber" : 1,
+          "internalID" : "E2E6173D",
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "高级订阅",
-              "displayName" : "Ultimate",
+              "description" : "",
+              "displayName" : "",
               "locale" : "en_US"
             }
           ],
           "productID" : "Ultimate",
-          "recurring" : {
-            "interval" : "month",
-            "intervalCount" : 1
-          },
+          "recurringSubscriptionPeriod" : "P1M",
           "referenceName" : "Ultimate",
+          "subscriptionGroupID" : "570711DB",
           "type" : "RecurringSubscription"
         }
       ]
