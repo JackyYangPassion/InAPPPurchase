@@ -4,7 +4,66 @@
 
   ],
   "products" : [
-
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "1A0186D1",
+      "localizations" : [
+        {
+          "description" : "3个金币",
+          "displayName" : "3金币包",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "coins_3",
+      "referenceName" : "3 Coins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "2.99",
+      "familyShareable" : false,
+      "internalID" : "1A0186D2",
+      "localizations" : [
+        {
+          "description" : "10个金币",
+          "displayName" : "10金币包",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "coins_10",
+      "referenceName" : "10 Coins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "19.99",
+      "familyShareable" : false,
+      "internalID" : "1A0186D3",
+      "localizations" : [
+        {
+          "description" : "200个金币",
+          "displayName" : "200金币包",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "coins_200",
+      "referenceName" : "200 Coins",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "49.99",
+      "familyShareable" : false,
+      "internalID" : "1A0186D4",
+      "localizations" : [
+        {
+          "description" : "500个金币",
+          "displayName" : "500金币包",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "coins_500",
+      "referenceName" : "500 Coins",
+      "type" : "Consumable"
+    }
   ],
   "settings" : {
     "_failTransactionsEnabled" : false,
@@ -73,7 +132,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "0.99",
+          "displayPrice" : "99.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "1A0186D9",
@@ -98,7 +157,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "0.99",
+          "displayPrice" : "199.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "E2E6173D",
