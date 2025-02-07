@@ -1,0 +1,54 @@
+# Android-Specific Development Rules
+# Last Updated: 2024-04-10
+
+## Android Development Guidelines
+
+### Google Play Billing
+- Use Google Play Billing Library
+- Implement proper purchase verification
+- Handle subscription lifecycle
+- Test with Google Play billing sandbox
+- Support subscription upgrades/downgrades
+
+### Android-Specific Features
+- Handle Android lifecycle properly
+- Support different Android versions
+- Implement proper permissions
+- Handle configuration changes
+- Support Android-specific gestures
+
+### Material Design
+- Follow Material Design 3 guidelines
+- Implement proper theming
+- Support dynamic colors
+- Handle different screen densities
+- Support RTL layouts
+
+### Performance
+- Optimize app size
+- Implement proper ProGuard rules
+- Handle background processes
+- Optimize battery usage
+- Implement proper caching
+
+### Testing
+- Use JUnit for unit tests
+- Implement Espresso UI tests
+- Test different Android versions
+- Test on various devices
+- Test different screen sizes
+
+### Google Play Store
+- Follow Play Store guidelines
+- Prepare store listing
+- Handle app signing
+- Implement proper crash reporting
+- Keep privacy policy up-to-date
+
+### Security
+- Implement proper encryption
+- Handle sensitive data securely
+- Use proper authentication
+- Follow Android security best practices
+- Implement proper data backup
+ 

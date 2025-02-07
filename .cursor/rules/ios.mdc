@@ -1,0 +1,53 @@
+# iOS-Specific Development Rules
+# Last Updated: 2024-04-10
+
+## iOS Development Guidelines
+
+### StoreKit Integration
+- Use StoreKit 2 for in-app purchases
+- Implement proper receipt validation
+- Handle subscription status updates
+- Test with StoreKit configuration files
+- Support family sharing if applicable
+
+### iOS-Specific Features
+- Implement proper memory management
+- Handle iOS lifecycle events
+- Support iOS-specific gestures
+- Implement proper keyboard handling
+- Support Dynamic Type
+
+### UI Guidelines
+- Follow iOS Human Interface Guidelines
+- Support Safe Area insets
+- Implement proper Dark Mode
+- Handle different screen sizes
+- Support accessibility features
+
+### Performance
+- Optimize memory usage
+- Handle background/foreground transitions
+- Implement proper caching
+- Optimize image loading
+- Handle low memory warnings
+
+### Testing
+- Use XCTest framework
+- Implement UI tests
+- Test in-app purchases
+- Test different iOS versions
+- Test on various devices
+
+### App Store
+- Follow App Store guidelines
+- Prepare proper screenshots
+- Write clear app descriptions
+- Handle review process requirements
+- Keep privacy labels up-to-date
+
+### Security
+- Implement proper keychain usage
+- Handle sensitive data securely
+- Use proper encryption
+- Follow Apple's security guidelines
+- Implement proper authentication 
