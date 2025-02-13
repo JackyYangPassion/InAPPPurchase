@@ -1,5 +1,6 @@
 package compose.project.demo
 
+
 import ViewModelFactory
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import ui.SubscriptionScreen
+import ui.CoinsScreen
 import inapppurchase.composeapp.generated.resources.Res
 import inapppurchase.composeapp.generated.resources.compose_multiplatform
 
@@ -21,18 +23,29 @@ import inapppurchase.composeapp.generated.resources.compose_multiplatform
 fun App(viewModelFactory: ViewModelFactory) {
     MaterialTheme {
         var showSubscription by remember { mutableStateOf(false) }
+        var showCoins by remember { mutableStateOf(false) }
         
-        if (showSubscription) {
-            SubscriptionScreen(
-                viewModel = viewModelFactory.createSubscriptionViewModel(),
-                onNavigateBack = { showSubscription = false }
-            )
-        } else {
-            Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Button(onClick = { showSubscription = true }) {
-                    Text("订阅")
+        when {
+            showCoins -> {
+                CoinsScreen(
+                    viewModel = viewModelFactory.createCoinsViewModel(),
+                    onNavigateBack = { showCoins = false }
+                )
+            }
+            showSubscription -> {
+                SubscriptionScreen(
+                    viewModel = viewModelFactory.createSubscriptionViewModel(),
+                    onNavigateBack = { showSubscription = false },
+                    onNavigateToCoins = { showCoins = true }
+                )
+            }
+            else -> {
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Button(onClick = { showSubscription = true }) {
+                        Text("订阅")
+                    }
+                    Image(painterResource(Res.drawable.compose_multiplatform), null)
                 }
-                Image(painterResource(Res.drawable.compose_multiplatform), null)
             }
         }
     }

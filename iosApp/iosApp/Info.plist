@@ -20,8 +20,12 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>15.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MinimumOSVersion</key>
+	<string>15.0</string>
 	<key>StoreKitConfigurationFileURL</key>
 	<string>SyncedProducts.storekit</string>
 	<key>UIApplicationSceneManifest</key>

@@ -26,6 +26,26 @@ kotlin {
             baseName = "ComposeApp"
             isStatic = true
         }
+        iosTarget.binaries.all {
+            linkerOpts += listOf(
+                "-framework", "StoreKit",
+                "-framework", "Foundation"
+            )
+        }
+        iosTarget.apply {
+            compilations.configureEach {
+                kotlinOptions {
+                    freeCompilerArgs += listOf(
+                        "-Xobjc-generics",
+                        "-linker-option", "-framework", "-linker-option", "StoreKit",
+                        "-Xexport-kdoc"
+                    )
+                }
+            }
+            binaries.all {
+                binaryOptions["deploymentTarget"] = "16.0"
+            }
+        }
     }
     
     sourceSets {
@@ -46,6 +66,17 @@ kotlin {
             // 添加 Kermit 依赖
             // 使用版本目录引用 Kermit
             implementation(libs.touchlab.kermit)
+        }
+    }
+
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        compilations.configureEach {
+            kotlinOptions {
+                freeCompilerArgs += listOf(
+                    "-Xbinary=ios_min_version=15.0",
+                    "-Xexport-kdoc"
+                )
+            }
         }
     }
 }
