@@ -6,7 +6,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.suspendCancellableCoroutine
 import model.CoinProduct
 import model.PurchaseState
+import platform.Foundation.NSBundle
+import platform.Foundation.NSData
 import platform.Foundation.NSError
+import platform.Foundation.base64EncodedStringWithOptions
+import platform.Foundation.dataWithContentsOfURL
 import platform.StoreKit.*
 import platform.darwin.NSObject
 import kotlin.coroutines.resume
@@ -16,14 +20,14 @@ import kotlin.experimental.ExperimentalNativeApi
 class IosCoinService : CoinService {
     private val products = mutableMapOf<String, SKProduct>()
     private val coinProductIds = setOf(
-        "coins_3",
-        "coins_10",
-        "coins_200",
-        "coins_500"
+        "com.ai.razefaces.swiftshopping.coins_3",
+        "com.ai.razefaces.swiftshopping.coins_10",
+        "com.ai.razefaces.swiftshopping.coins_200",
+        "com.ai.razefaces.swiftshopping.coins_500"
     )
 
     init {
-        if (Platform.isDebugBinary) {
+        //if (Platform.isDebugBinary) {
             log.v { "启用 StoreKit 本地测试" }
             SKPaymentQueue.defaultQueue().addTransactionObserver(
                 object : NSObject(), SKPaymentTransactionObserverProtocol {
@@ -34,13 +38,14 @@ class IosCoinService : CoinService {
                     }
                 }
             )
-        }
+        //}
     }
 
     private fun handleTransaction(transaction: SKPaymentTransaction) {
         when (transaction.transactionState) {
             SKPaymentTransactionState.SKPaymentTransactionStatePurchased -> {
                 log.v { "购买成功" }
+                verifyReceipt()
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
             }
             SKPaymentTransactionState.SKPaymentTransactionStateFailed -> {
@@ -51,10 +56,43 @@ class IosCoinService : CoinService {
         }
     }
 
+    private fun verifyReceipt() {
+        try {
+            // 获取应用收据路径
+            val receiptUrl = NSBundle.mainBundle.appStoreReceiptURL
+            if (receiptUrl != null) {
+                // 读取收据数据
+                val receiptData = NSData.dataWithContentsOfURL(receiptUrl)
+                if (receiptData != null) {
+                    // 将收据数据转换为Base64字符串
+                    val base64Receipt = receiptData.base64EncodedStringWithOptions(0u)
+                    log.v { "收据数据: $base64Receipt" }
+//                    // 发送到后端验证
+//                    val response = apiService.verifyReceipt(base64Receipt)
+//
+//                    if (response.isSuccessful) {
+//                        log.v { "收据验证成功" }
+//                        // 在这里处理验证成功的逻辑
+//                    } else {
+//                        log.e { "收据验证失败: ${response.message}" }
+//                    }
+                } else {
+                    log.e { "无法读取收据数据" }
+                }
+            } else {
+                log.e { "找不到收据文件" }
+            }
+        } catch (e: Exception) {
+            log.e { "验证收据时发生错误: ${e.message}" }
+        }
+    }
+
     override suspend fun getProducts(): List<CoinProduct> = try {
         log.v { "开始请求金币产品..." }
         
         val request = SKProductsRequest(coinProductIds)
+
+
         
         suspendCancellableCoroutine { continuation ->
             val result = mutableListOf<CoinProduct>()
@@ -69,10 +107,10 @@ class IosCoinService : CoinService {
                             log.v { "处理产品: ${product.productIdentifier}" }
                             
                             val coinAmount = when (product.productIdentifier) {
-                                "coins_3" -> 3
-                                "coins_10" -> 10
-                                "coins_200" -> 200
-                                "coins_500" -> 500
+                                "com.ai.razefaces.swiftshopping.coins_3" -> 3
+                                "com.ai.razefaces.swiftshopping.coins_10" -> 10
+                                "com.ai.razefaces.swiftshopping.coins_200" -> 200
+                                "com.ai.razefaces.swiftshopping.coins_500" -> 500
                                 else -> 0
                             }
                             

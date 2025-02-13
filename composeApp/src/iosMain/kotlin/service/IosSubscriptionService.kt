@@ -1,13 +1,21 @@
 package service
 
 import compose.project.demo.log
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.suspendCancellableCoroutine
 import model.PurchaseState
 import model.SubscriptionProduct
 import model.SubscriptionType
+import platform.Foundation.NSBundle
+import platform.Foundation.NSData
 import platform.Foundation.NSError
+import platform.Foundation.base64EncodedStringWithOptions
+import platform.Foundation.dataWithContentsOfURL
 import platform.StoreKit.SKProduct
 import platform.StoreKit.SKProductsRequest
 import platform.StoreKit.SKProductsRequestDelegateProtocol
@@ -22,21 +30,29 @@ import platform.darwin.NSObject
 import kotlin.coroutines.resume
 import kotlin.experimental.ExperimentalNativeApi
 
+
+
+
 @OptIn(ExperimentalNativeApi::class)
 class IosSubscriptionService : SubscriptionService {
     private val products = mutableMapOf<String, SKProduct>()
+    private val scope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    //private val apiService = ApiService() // 假设你有一个API服务类
 
     init {
         // 启用 StoreKit 本地测试
-        @OptIn(kotlin.experimental.ExperimentalNativeApi::class)
+        @OptIn(ExperimentalNativeApi::class)
         if (Platform.isDebugBinary) {
             log.v { "启用 StoreKit 本地测试" }
             SKPaymentQueue.defaultQueue().addTransactionObserver(
                 object : NSObject(), SKPaymentTransactionObserverProtocol {
                     override fun paymentQueue(queue: SKPaymentQueue, updatedTransactions: List<*>) {
-                        // 处理交易更新
                         updatedTransactions.forEach { transaction ->
-                            (transaction as? SKPaymentTransaction)?.let { handleTransaction(it) }
+                            (transaction as? SKPaymentTransaction)?.let { 
+                                scope.launch {
+                                    handleTransaction(it)
+                                }
+                            }
                         }
                     }
                 }
@@ -53,10 +69,11 @@ class IosSubscriptionService : SubscriptionService {
         log.v { "沙盒环境: ${Platform.isDebugBinary}" }
     }
 
-    private fun handleTransaction(transaction: SKPaymentTransaction) {
+    private suspend fun handleTransaction(transaction: SKPaymentTransaction) {
         when (transaction.transactionState) {
             SKPaymentTransactionState.SKPaymentTransactionStatePurchased -> {
-                log.v { "购买成功" }
+                log.v { "购买成功，开始验证收据" }
+                verifyReceipt()
                 SKPaymentQueue.defaultQueue().finishTransaction(transaction)
             }
             SKPaymentTransactionState.SKPaymentTransactionStateFailed -> {
@@ -67,16 +84,48 @@ class IosSubscriptionService : SubscriptionService {
         }
     }
 
+    private suspend fun verifyReceipt() {
+        try {
+            // 获取应用收据路径
+            val receiptUrl = NSBundle.mainBundle.appStoreReceiptURL
+            if (receiptUrl != null) {
+                // 读取收据数据
+                val receiptData = NSData.dataWithContentsOfURL(receiptUrl)
+                if (receiptData != null) {
+                    // 将收据数据转换为Base64字符串
+                    val base64Receipt = receiptData.base64EncodedStringWithOptions(0u)
+                    log.v { "收据数据: $base64Receipt" }
+//                    // 发送到后端验证
+//                    val response = apiService.verifyReceipt(base64Receipt)
+//
+//                    if (response.isSuccessful) {
+//                        log.v { "收据验证成功" }
+//                        // 在这里处理验证成功的逻辑
+//                    } else {
+//                        log.e { "收据验证失败: ${response.message}" }
+//                    }
+                } else {
+                    log.e { "无法读取收据数据" }
+                }
+            } else {
+                log.e { "找不到收据文件" }
+            }
+        } catch (e: Exception) {
+            log.e { "验证收据时发生错误: ${e.message}" }
+        }
+    }
+
     override suspend fun getProducts(): List<SubscriptionProduct> = try {
     log.v { "开始请求产品..." }
+
     val productIdentifiers = setOf(
-        "Plus",
-        "Ultimate"
+        "com.ai.razefaces.xyz.plus",
+        "com.ai.razefaces.xyz.ulimit",
     )
     log.v { "请求的产品ID: $productIdentifiers" }
     
     val request = SKProductsRequest(productIdentifiers)
-    
+
     suspendCancellableCoroutine { continuation ->
         val result = mutableListOf<SubscriptionProduct>()
         request.setDelegate(object : NSObject(), SKProductsRequestDelegateProtocol {
